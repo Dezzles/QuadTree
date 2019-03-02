@@ -326,6 +326,19 @@ class QuadTree {
     }
     return count;
   }
+
+  contains (point) {
+    if (this.points.indexOf(point) !== -1) {
+      return true;
+    }
+    if (this.divided) {
+      return this.northwest.contains(point) ||
+        this.northeast.contains(point) ||
+        this.southwest.contains(point) ||
+        this.southeast.contains(point)
+    }
+    return false;
+  }
 }
 
 if (typeof module !== "undefined") {
